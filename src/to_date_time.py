@@ -1,4 +1,4 @@
-def todate_time(data):
+def to_date_time(data):
 
     tmp = data[0:2]
     yyyy = int.from_bytes(tmp,'little')
@@ -14,7 +14,7 @@ def todate_time(data):
 
 # 測定日時を求める
 # e4 07 05 02 0a 28 13
-date_time = todate_time(b'\xe4\x07\x05\x02\x0a\x28\x13')
+date_time = to_date_time(b'\xe4\x07\x05\x02\x0a\x28\x13')
 # -> 2020/5/2 10:40:19 
 
 print("date_time = " + date_time)
