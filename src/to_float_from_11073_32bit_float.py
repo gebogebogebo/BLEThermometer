@@ -1,6 +1,6 @@
 import numpy as np
 
-def tofloat_from11073_32bit_float(data):
+def to_float_from11073_32bit_float(data):
     tmp = int.from_bytes(data,'little')
     uint32val = np.array([tmp],dtype=np.uint32)
 
@@ -21,7 +21,7 @@ def tofloat_from11073_32bit_float(data):
     return ret
 
 # 測定値を求める
-temp = tofloat_from11073_32bit_float(b'\x73\x01\x00\xff')
+temp = to_float_from11073_32bit_float(b'\x73\x01\x00\xff')
 # -> 36.1
 
 strtemp = str(temp)
