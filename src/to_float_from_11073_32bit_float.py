@@ -21,8 +21,10 @@ def to_float_from11073_32bit_float(data):
     return ret
 
 # 測定値を求める
-temp = to_float_from11073_32bit_float(b'\x73\x01\x00\xff')
-# -> 36.1
+# 37.2
+temp = to_float_from11073_32bit_float(b'\x74\x01\x00\xff')
+print("temp = " + str(temp) + " C")
 
-strtemp = str(temp)
-print("temp = " + strtemp + " C")
+# 37.1
+temp = to_float_from11073_32bit_float(b'\x73\x01\x00\xff')
+print("temp = " + str(temp) + " C")
