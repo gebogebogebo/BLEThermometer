@@ -1,6 +1,6 @@
 import numpy as np
 
-def to_float_from11073_32bit_float(data):
+def to_float_from_11073_32bit_float(data):
     tmp = int.from_bytes(data,'little')
     uint32val = np.array([tmp],dtype=np.uint32)
 
@@ -17,14 +17,5 @@ def to_float_from11073_32bit_float(data):
     exponent = int(tmp2[0])
 
     # 実数を計算
-    ret = mantissa * pow(10,exponent)
+    ret = round(mantissa * pow(10,exponent),1)
     return ret
-
-# 測定値を求める
-# 37.2
-temp = to_float_from11073_32bit_float(b'\x74\x01\x00\xff')
-print("temp = " + str(temp) + " C")
-
-# 37.1
-temp = to_float_from11073_32bit_float(b'\x73\x01\x00\xff')
-print("temp = " + str(temp) + " C")
