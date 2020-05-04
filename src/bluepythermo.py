@@ -1,8 +1,5 @@
 # このpyを実行するにはsudo権限が必要です。
 # 権限がたりないとscanner.scan()でエラーになります。
-# vs-codeの場合は
-# sudo code-oss --user-data-dir='~/.vscode-root'
-
 from bluepy import btle
 import sys
 import time
@@ -11,19 +8,19 @@ import to_date_time as todt
 import sendline as line
 
 # define
-BLE_ADDRESS="18:93:D7:76:C9:B8"
 SERVICE_UUID="00001809-0000-1000-8000-00805f9b34fb"
+
+# global
+BLE_ADDRESS="xx:xx:xx:xx:xx:xx"
 TOKEN = "this is token"
 
 def scan():
     try:
         scanner = btle.Scanner(0)
         devices = scanner.scan(3.0)
-    
+
         for device in devices:
             print(f'SCAN BLE_ADDR：{device.addr}')
-            #print(f'  アドレスタイプ：{device.addrType}')
-            #print(f'  RSSI：{device.rssi}')
 
             if(device.addr.lower()==BLE_ADDRESS.lower()):
                 print("Find!")
@@ -37,7 +34,7 @@ def scan():
 class MyDelegate(btle.DefaultDelegate):
     def __init__(self):
         btle.DefaultDelegate.__init__(self)
- 
+
     def handleNotification(self, cHandle, data):
         print("Indicate Handle = " + hex(cHandle))
         print("Flags = " + hex(data[0]))
@@ -78,11 +75,8 @@ def main():
     service = peripheral.getServiceByUUID(SERVICE_UUID)
     peripheral.withDelegate(MyDelegate())
 
-    # Get CCCD
-    handle = 0x13
-    data = peripheral.readCharacteristic(handle)
     # Enable Indicate
-    peripheral.writeCharacteristic(handle, b'\x02\x00', True)
+    peripheral.writeCharacteristic(0x0013, b'\x02\x00', True)
 
     # 通知を待機する
     print("Indicate Wait...")
@@ -92,7 +86,7 @@ def main():
             if peripheral.waitForNotifications(TIMEOUT):
                 # handleNotification()が呼び出された
                 continue
-        
+
             # handleNotification()がTIMEOUT秒だけ待っても呼び出されなかった
             print("wait...")
     except:
@@ -105,6 +99,10 @@ if __name__ == '__main__':
     #global TOKEN
     TOKEN = sys.argv[1]
     print("token = " + TOKEN)
+
+    #gloval BLE_ADDRESS
+    BLE_ADDRESS = sys.argv[2]
+    print("BLE device = " + BLE_ADDRESS)
 
     while True:
         main()
