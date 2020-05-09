@@ -15,17 +15,17 @@
 
 # どんなもの？
 **体温を測ったらLINEに通知します。**
-<img src="/Users/suzuki/Documents/GitHub/BLEThermometer/doc/img/memo_01.png" alt="memo_01" style="zoom:30%;" />
+<img src="./img/memo_01.png" alt="memo_01" style="zoom:30%;" />
 
 
 
 **体温計→BLE→ラズパイ →WebAPI→LINE→スマホと測定値を送信します。**
-<img src="/Users/suzuki/Documents/GitHub/BLEThermometer/doc/img/memo_02.png" alt="memo_02" style="zoom:40%;" />
+<img src="./img/memo_02.png" alt="memo_02" style="zoom:40%;" />
 
 
 
 **体温計とスマホが物理的に離れていても通知が飛ぶので、別の場所にいる人や実家のおばあちゃんの体温をリモートで把握することなんかもできるかと思います。**
-<img src="/Users/suzuki/Documents/GitHub/BLEThermometer/doc/img/memo_03.png" alt="memo_03" style="zoom:40%;" />
+<img src="./img/memo_03.png" alt="memo_03" style="zoom:40%;" />
 
 
 # 環境
@@ -88,15 +88,15 @@ $ reboot
 
 ②再起動すると、アイコンが増えているのでここからペアリングします。
 
-<img src="/Users/suzuki/Documents/GitHub/BLEThermometer/doc/img/192_168_11_13__raspberrypi__-_VNC_Viewer.png" alt="192_168_11_13__raspberrypi__-_VNC_Viewer" style="zoom:40%;" />
+<img src="./img/192_168_11_13__raspberrypi__-_VNC_Viewer.png" alt="192_168_11_13__raspberrypi__-_VNC_Viewer" style="zoom:40%;" />
 
 ③「新しいデバイスを設定」からウィザードでペアリングします。
 
-<img src="/Users/suzuki/Documents/GitHub/BLEThermometer/doc/img/192_168_11_13__raspberrypi__-_VNC_Viewer-2.png" alt="192_168_11_13__raspberrypi__-_VNC_Viewer-2" style="zoom:40%;" />
+<img src="./img/192_168_11_13__raspberrypi__-_VNC_Viewer-2.png" alt="192_168_11_13__raspberrypi__-_VNC_Viewer-2" style="zoom:40%;" />
 
 ④ペアリング成功すると、デバイスの左上に鍵のようなマークが表示されます。これでOK。
 
-<img src="/Users/suzuki/Documents/GitHub/BLEThermometer/doc/img/192_168_11_13__raspberrypi__-_VNC_Viewer-3.png" alt="192_168_11_13__raspberrypi__-_VNC_Viewer-3" style="zoom:50%;" />
+<img src="./img/192_168_11_13__raspberrypi__-_VNC_Viewer-3.png" alt="192_168_11_13__raspberrypi__-_VNC_Viewer-3" style="zoom:50%;" />
 
 
 

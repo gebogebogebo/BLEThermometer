@@ -318,7 +318,7 @@ comment
 
 キタ。
 
-<img src="/Users/suzuki/Documents/GitHub/BLEThermometer/doc/img/IMG_6943.png" alt="IMG_6943" style="zoom:33%;" />
+<img src="./img/IMG_6943.png" alt="IMG_6943" style="zoom:33%;" />
 
 
 
@@ -326,7 +326,7 @@ comment
 
 ここからが本番です。ここまで調べてきたことを順番にやっていけばいいだけなので簡単です。
 
-<img src="/Users/suzuki/Documents/GitHub/BLEThermometer/doc/img/memo_04.png" alt="memo_04" style="zoom:50%;" />
+<img src="./img/memo_04.png" alt="memo_04" style="zoom:50%;" />
 
 
 
@@ -473,7 +473,7 @@ except!
 
 ちゃんとLINEに通知がきました。
 
-<img src="/Users/suzuki/Documents/GitHub/BLEThermometer/doc/img/IMG_6944.png" alt="IMG_6944" style="zoom:33%;" />
+<img src="./img/IMG_6944.png" alt="IMG_6944" style="zoom:33%;" />
 
 部屋にラズパイを置いてpyを実行させておくとスキャン→LINE通知を繰り返す想定どおりの動作をします。体温計とラズパイを設置すれば遠く離れた人の体温も通知できるので生存確認にも使える。
 
