@@ -1,3 +1,6 @@
+# 起動方法
+# sudo python3 bluepythermo.py [LINEトークン] 18:93:D7:76:C9:B8
+#
 # このpyを実行するにはsudo権限が必要です。
 # 権限がたりないとscanner.scan()でエラーになります。
 from bluepy import btle
@@ -6,6 +9,7 @@ import time
 import to_float_from_11073_32bit_float as tofl
 import to_date_time as todt
 import sendline as line
+import subprocess
 
 # define
 SERVICE_UUID="00001809-0000-1000-8000-00805f9b34fb"
@@ -13,14 +17,16 @@ SERVICE_UUID="00001809-0000-1000-8000-00805f9b34fb"
 # global
 BLE_ADDRESS="xx:xx:xx:xx:xx:xx"
 TOKEN = "this is token"
+TOKEN2 = "this is LINE token2"
 
 def scan():
     try:
+        print(f'SCAN')
         scanner = btle.Scanner(0)
-        devices = scanner.scan(3.0)
+        devices = scanner.scan(1.0)
 
         for device in devices:
-            print(f'SCAN BLE_ADDR：{device.addr}')
+            # print(f'SCAN BLE_ADDR：{device.addr}')
 
             if(device.addr.lower()==BLE_ADDRESS.lower()):
                 print("Find!")
@@ -46,6 +52,12 @@ class MyDelegate(btle.DefaultDelegate):
         timestamp = todt.to_date_time(data[5:12])
         print("timestamp = " + timestamp)
         line.send_notify(TOKEN,str(temp)+" C "+timestamp)
+        line.send_notify(TOKEN2,str(temp)+" C "+timestamp)
+
+        # voice
+        msg = "げぼちゃんの体温は"+str(temp)+"℃"+"だす"
+        print(msg)
+        subprocess.Popen( ["../../OpenJTalk/jtalk.sh", msg] )
 
 def main():
     #
@@ -56,7 +68,7 @@ def main():
         scanresult = scan()
         if( scanresult==True):
             break
-        time.sleep(3)
+        time.sleep(6)
     print("Scan End")
 
 
@@ -69,11 +81,15 @@ def main():
         peripheral.connect(BLE_ADDRESS)
     except:
         print("connect Error!")
-        sys.exit(0)
+        return
 
     print("Connected!")
-    service = peripheral.getServiceByUUID(SERVICE_UUID)
-    peripheral.withDelegate(MyDelegate())
+    try:
+        service = peripheral.getServiceByUUID(SERVICE_UUID)
+        peripheral.withDelegate(MyDelegate())
+    except:
+        print("error")
+        return
 
     # Enable Indicate
     peripheral.writeCharacteristic(0x0013, b'\x02\x00', True)
@@ -92,6 +108,7 @@ def main():
     except:
         print("except!")
 
+    peripheral.disconnect()
     print("<end>")
 
 if __name__ == '__main__':
@@ -103,6 +120,8 @@ if __name__ == '__main__':
     #gloval BLE_ADDRESS
     BLE_ADDRESS = sys.argv[2]
     print("BLE device = " + BLE_ADDRESS)
+
+    subprocess.call( ["../../OpenJTalk/jtalk.sh", "起動しました げぼげぼちゃんの体温をお知らせします"] )
 
     while True:
         main()
